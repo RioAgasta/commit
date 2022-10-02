@@ -1,6 +1,6 @@
 # commit
 
-A new Flutter project.
+A new Flutter project with changes.
 
 ## Getting Started
 
