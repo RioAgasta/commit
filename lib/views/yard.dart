@@ -24,33 +24,41 @@ class _YardState extends State<Yard> {
             children: <Widget>[
               verticalSpaceMedium,
               Container(
-                width: screenWidth - 40,
-                height: 200,
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Colors.green,
-                      Colors.red,
-                    ],
-                    stops: [
-                      0.1,
-                      1,
-                    ],
-                    begin: Alignment.topCenter,
-                    end: Alignment.center,
-                  ),
+                width: 150,
+                height: 150,
+                color: Colors.grey,
+                child: Image.asset(
+                  'assets/images/smk2.png',
                 ),
-                child: const Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: Text(
-                    'Hello World',
-                    style: TextStyle(
-                      fontSize: 45,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w900,
-                      fontFamily: 'BlackadderITC', //fontFamily harus sesuai sama 'family' yang ada di pubspec
-                    ),
-                  ),
+              ),
+              verticalSpaceMedium,
+              Container(
+                width: 150,
+                height: 150,
+                color: Colors.grey,
+                child: Image.network(
+                  'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Google-flutter-logo.svg/2560px-Google-flutter-logo.svg.png',
+                  fit: BoxFit.contain,
+                ),
+              ),
+              verticalSpaceMedium,
+              Container(
+                width: 150,
+                height: 150,
+                color: Colors.grey,
+                child: Image.network(
+                  'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Google-flutter-logo.svg/2560px-Google-flutter-logo.svg.png',
+                  fit: BoxFit.fill,
+                ),
+              ),
+              verticalSpaceMedium,
+              Container(
+                width: screenWidth,
+                height: 100,
+                color: Colors.grey,
+                child: Image.network(
+                  'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Google-flutter-logo.svg/2560px-Google-flutter-logo.svg.png',
+                  fit: BoxFit.cover,
                 ),
               ),
             ],

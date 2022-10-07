@@ -1,8 +1,6 @@
 import 'package:commit/widgets/symmetricalSpace.dart';
 import 'package:flutter/material.dart';
 
-import '../data/shared_prefs.dart';
-
 class Basement extends StatefulWidget {
   const Basement({Key? key}) : super(key: key);
 
@@ -11,15 +9,6 @@ class Basement extends StatefulWidget {
 }
 
 class _BasementState extends State<Basement> {
-
-  TextEditingController strController = TextEditingController();
-  String? strValue = "";
-
-  @override
-  void initState() {
-    super.initState();
-    loadValues();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,13 +32,12 @@ class _BasementState extends State<Basement> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('String Value: $strValue'),
+              Text('String Value: '),
               verticalSpaceSmall,
               Row(
                 children: [
                   Expanded(
                     child: TextField(
-                      controller: strController,
                       decoration: InputDecoration(
                         labelText: 'Enter Value',
                         border: OutlineInputBorder(),
@@ -58,12 +46,7 @@ class _BasementState extends State<Basement> {
                   ),
                   horizontalSpaceSmall,
                   ElevatedButton(
-                    onPressed: (){
-                      setState(() {
-                        SharedPrefs.setString('strKey', strController.text);
-                        loadValues();
-                      });
-                    },
+                    onPressed: (){},
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.blue),
                     ),
@@ -71,12 +54,7 @@ class _BasementState extends State<Basement> {
                   ),
                   horizontalSpaceSmall,
                   ElevatedButton(
-                    onPressed: (){
-                      setState(() {
-                        SharedPrefs.remove('strKey');
-                        loadValues();
-                      });
-                    },
+                    onPressed: (){},
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.red),
                     ),
@@ -89,9 +67,5 @@ class _BasementState extends State<Basement> {
         ),
       ),
     );
-  }
-
-  loadValues() async {
-    strValue = await SharedPrefs.getString('strKey');
   }
 }

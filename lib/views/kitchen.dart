@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/symmetricalSpace.dart';
+
 class Kitchen extends StatefulWidget {
   const Kitchen({Key? key}) : super(key: key);
 
@@ -8,13 +10,8 @@ class Kitchen extends StatefulWidget {
 }
 
 class _KitchenState extends State<Kitchen> {
-  int itemCount = 1;
 
-  void onTap(){
-    setState(() {
-      itemCount++;
-    });
-  }
+  int itemCount = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +24,34 @@ class _KitchenState extends State<Kitchen> {
           padding: EdgeInsets.all(10),
           child: Column(
             children: [
-              ElevatedButton(
-                onPressed: onTap,
-                child: Text('Add List'),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ElevatedButton(
+                    onPressed: (){
+                      setState(() {
+                        itemCount++;
+                      });
+                    },
+                    child: Text('Increase List'),
+                  ),
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.orange),
+                    ),
+                    onPressed: (){},
+                    child: Text('Decrease List'),
+                  ),
+                  ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.red),
+                    ),
+                    onPressed: (){},
+                    child: Text('Reset List'),
+                  ),
+                ],
               ),
+              verticalSpaceMedium,
               GridView.builder(
                 gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 100,
@@ -42,11 +63,16 @@ class _KitchenState extends State<Kitchen> {
                 itemCount: itemCount,
                 itemBuilder: (BuildContext context, int index){
                   return Container(
-                    color: Colors.blue,
-                    child: ListTile(
-                      title: Text('Person $index'),
-                      leading: Icon(Icons.person),
-                      trailing: Icon(Icons.add),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.lightBlueAccent,
+                          Colors.blue,
+                          Colors.blue.shade900,
+                        ],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
                     ),
                   );
                 },
