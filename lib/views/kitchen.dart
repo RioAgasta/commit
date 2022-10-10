@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:commit/data/shared_prefs.dart';
 import '../widgets/symmetricalSpace.dart';
 
 class Kitchen extends StatefulWidget {
@@ -12,6 +12,18 @@ class Kitchen extends StatefulWidget {
 class _KitchenState extends State<Kitchen> {
 
   int itemCount = 1;
+
+  void loadValues() async {
+    itemCount = (await SharedPrefs().getInt('intValue'))!;
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadValues();
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +43,8 @@ class _KitchenState extends State<Kitchen> {
                     onPressed: (){
                       setState(() {
                         itemCount++;
+                        SharedPrefs().setInt('intValue', itemCount);
+                        loadValues();
                       });
                     },
                     child: Text('Increase List'),
