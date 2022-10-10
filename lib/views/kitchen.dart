@@ -14,7 +14,7 @@ class _KitchenState extends State<Kitchen> {
   int itemCount = 1;
 
   void loadValues() async {
-    itemCount = (await SharedPrefs().getInt('intValue'))!;
+    itemCount = (await SharedPrefs.getInt('intValue'))!;
     setState(() {});
   }
 
@@ -43,7 +43,7 @@ class _KitchenState extends State<Kitchen> {
                     onPressed: (){
                       setState(() {
                         itemCount++;
-                        SharedPrefs().setInt('intValue', itemCount);
+                        SharedPrefs.setInt('intValue', itemCount);
                         loadValues();
                       });
                     },
