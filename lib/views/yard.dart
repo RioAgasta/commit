@@ -10,10 +10,15 @@ class Yard extends StatefulWidget {
 }
 
 class _YardState extends State<Yard> {
+  Future<void> getData() async {
+    await Future.delayed(Duration(seconds: 3));
+    print('get data done');
+  }
+
   @override
   Widget build(BuildContext context) {
-
-    double screenWidth = MediaQuery.of(context).size.width;
+    // double screenWidth = MediaQuery.of(context).size.width;
+    // double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: AppBar(
@@ -24,50 +29,44 @@ class _YardState extends State<Yard> {
       ),
       drawer: const Sidebar(),
       body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            children: <Widget>[
-              verticalSpaceMedium,
-              Container(
-                width: 150,
-                height: 150,
-                color: Colors.grey,
-                child: Image.asset(
-                  'assets/images/smk2.png',
-                ),
+        child: Column(
+          children: [
+            verticalSpaceMedium,
+            ElevatedButton(
+              onPressed: () {
+                setState(() {});
+              },
+              child: Text('Reload'),
+            ),
+            verticalSpaceLarge,
+            Center(
+              child: FutureBuilder(
+                future: getData(),
+                builder: (context, snapshot) {
+                  return GridView.builder(
+                    shrinkWrap: true,
+                    gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 400,
+                      mainAxisSpacing: 10,
+                      crossAxisSpacing: 10,
+                    ),
+                    itemCount: 12,
+                    itemBuilder: (BuildContext context, int index){
+                      return Container(
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: snapshot.connectionState == ConnectionState.done ? [Colors.red, Colors.amber] : [Colors.grey, Colors.grey],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
               ),
-              verticalSpaceMedium,
-              Container(
-                width: 150,
-                height: 150,
-                color: Colors.grey,
-                child: Image.network(
-                  'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Google-flutter-logo.svg/2560px-Google-flutter-logo.svg.png',
-                  fit: BoxFit.contain,
-                ),
-              ),
-              verticalSpaceMedium,
-              Container(
-                width: 150,
-                height: 150,
-                color: Colors.grey,
-                child: Image.network(
-                  'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Google-flutter-logo.svg/2560px-Google-flutter-logo.svg.png',
-                  fit: BoxFit.fill,
-                ),
-              ),
-              verticalSpaceMedium,
-              Container(
-                width: screenWidth,
-                height: 100,
-                color: Colors.grey,
-                child: Image.network(
-                  'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Google-flutter-logo.svg/2560px-Google-flutter-logo.svg.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
