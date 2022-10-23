@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:commit/widgets/symmetricalSpace.dart';
 
 class LivingRoom extends StatefulWidget {
   const LivingRoom({Key? key}) : super(key: key);
@@ -20,10 +19,9 @@ class _LivingRoomState extends State<LivingRoom> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Living Room'),
+        title: const Text('Living Room'),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -32,9 +30,9 @@ class _LivingRoomState extends State<LivingRoom> {
             shrinkWrap: true,
             children: [
               ListTile(
-                leading: Icon(Icons.person),
-                title: Text('List'),
-                trailing: Icon(Icons.add),
+                leading: const Icon(Icons.person),
+                title: const Text('List'),
+                trailing: const Icon(Icons.add),
                 selected: isSelected,
                 onTap: _onTap,
               ),

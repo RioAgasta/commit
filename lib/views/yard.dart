@@ -16,7 +16,7 @@ class _YardState extends State<Yard> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Yard'),
+        title: const Text('Yard'),
       ),
       body: SingleChildScrollView(
         child: Center(

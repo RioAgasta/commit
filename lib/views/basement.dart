@@ -1,3 +1,4 @@
+import 'package:commit/constants/sharedPrefs.dart';
 import 'package:commit/widgets/symmetricalSpace.dart';
 import 'package:flutter/material.dart';
 
@@ -10,16 +11,30 @@ class Basement extends StatefulWidget {
 
 class _BasementState extends State<Basement> {
 
+  TextEditingController strController = TextEditingController();
+  String? strValue;
+
+  void loadValues() async {
+    strValue = await SharedPrefs.getString('strValue') ?? "No Value";
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    loadValues();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Shared Preferences'),
+        title: const Text('Shared Preferences'),
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.all(20),
-          margin: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
+          margin: const EdgeInsets.all(20),
           decoration: BoxDecoration(
             boxShadow: const [
               BoxShadow(
@@ -32,13 +47,14 @@ class _BasementState extends State<Basement> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('String Value: '),
+              Text('String Value: $strValue'),
               verticalSpaceSmall,
               Row(
                 children: [
                   Expanded(
                     child: TextField(
-                      decoration: InputDecoration(
+                      controller: strController,
+                      decoration: const InputDecoration(
                         labelText: 'Enter Value',
                         border: OutlineInputBorder(),
                       ),
@@ -46,19 +62,26 @@ class _BasementState extends State<Basement> {
                   ),
                   horizontalSpaceSmall,
                   ElevatedButton(
-                    onPressed: (){},
+                    onPressed: (){
+                      strValue = strController.text;
+                      SharedPrefs.setString('strValue', strValue!);
+                      loadValues();
+                    },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.blue),
                     ),
-                    child: Text('Save'),
+                    child: const Text('Save'),
                   ),
                   horizontalSpaceSmall,
                   ElevatedButton(
-                    onPressed: (){},
+                    onPressed: (){
+                      SharedPrefs.remove('strValue');
+                      loadValues();
+                    },
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.red),
                     ),
-                    child: Text('Delete'),
+                    child: const Text('Delete'),
                   ),
                 ],
               ),

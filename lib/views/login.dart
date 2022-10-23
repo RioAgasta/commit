@@ -14,15 +14,15 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
 
   void _navigateToHome(BuildContext context){
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => Home()));
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Home()));
   }
 
   void _navigateToRegister(BuildContext context){
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => Register()));
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Register()));
   }
 
   void _navigateToBasement(BuildContext context){
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => Basement()));
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Basement()));
   }
 
   @override
@@ -38,7 +38,7 @@ class _LoginState extends State<Login> {
             child: Column(
               children: [
                 verticalSpaceLarge,
-                Text(
+                const Text(
                   'SMKN 2 Bandung',
                   style: TextStyle(
                     fontSize: 32,
@@ -47,30 +47,26 @@ class _LoginState extends State<Login> {
                 verticalSpaceMedium,
                 Image.asset('assets/images/smk2.png', width: 175, height: 175,),
                 verticalSpaceMedium,
-                const TextField(
+                TextField(
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     labelText: 'E-Mail Address',
-                    icon: Icon(Icons.email),
+                    icon: const Icon(Icons.email),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
                   ),
                 ),
                 verticalSpaceMedium,
-                const TextField(
-                  keyboardType: TextInputType.phone,
-                  decoration: InputDecoration(
-                    labelText: 'Phone',
-                    icon: Icon(Icons.phone),
-                    border: InputBorder.none,
-                  ),
-                ),
-                verticalSpaceMedium,
-                const TextField(
+                TextField(
                   keyboardType: TextInputType.text,
                   obscureText: true,
                   decoration: InputDecoration(
                     labelText: 'Password',
-                    icon: Icon(Icons.lock),
-                    border: OutlineInputBorder(),
+                    icon: const Icon(Icons.lock),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
                   ),
                 ),
                 verticalSpaceMedium,
@@ -86,7 +82,7 @@ class _LoginState extends State<Login> {
                         borderRadius: BorderRadius.circular(15),
                       ),
                     ),
-                    child: Text(
+                    child: const Text(
                       'Login',
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -97,27 +93,14 @@ class _LoginState extends State<Login> {
                 ),
                 verticalSpaceSmall,
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     InkWell(
                       onTap: (){
                         _navigateToRegister(context);
                       },
-                      child: Text(
+                      child: const Text(
                         'Register',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue,
-                        ),
-                      ),
-                    ),
-                    InkWell(
-                      onTap: (){
-                        _navigateToBasement(context);
-                      },
-                      child: Text(
-                        'Basement',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,

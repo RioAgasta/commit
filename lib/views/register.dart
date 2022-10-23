@@ -13,11 +13,9 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
 
-    double screenWidth = MediaQuery.of(context).size.width;
-
     return Scaffold(
         appBar: AppBar(
-          title: Text('Register'),
+          title: const Text('Register'),
         ),
         body: SingleChildScrollView(
           child: SafeArea(
@@ -32,10 +30,10 @@ class _RegisterState extends State<Register> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       verticalSpaceMedium,
-                      Text('Register'),
+                      const Text('Register'),
                       verticalSpaceSmall,
                       TextFormField(
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           label: Text('Username'),
                         ),
@@ -43,7 +41,7 @@ class _RegisterState extends State<Register> {
                       ),
                       verticalSpaceMedium,
                       TextFormField(
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           label: Text('Birthdate'),
                         ),
@@ -51,7 +49,7 @@ class _RegisterState extends State<Register> {
                       ),
                       verticalSpaceMedium,
                       TextFormField(
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           label: Text('E-Mail Address'),
                         ),
@@ -59,7 +57,7 @@ class _RegisterState extends State<Register> {
                       ),
                       verticalSpaceMedium,
                       TextFormField(
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           label: Text('Phone Number'),
                         ),
@@ -67,7 +65,7 @@ class _RegisterState extends State<Register> {
                       ),
                       verticalSpaceMedium,
                       TextFormField(
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           label: Text('Password'),
                         ),
@@ -76,7 +74,7 @@ class _RegisterState extends State<Register> {
                       ),
                       verticalSpaceMedium,
                       TextFormField(
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           label: Text('Confirm Password'),
                         ),
@@ -86,7 +84,7 @@ class _RegisterState extends State<Register> {
                       verticalSpaceMedium,
                       ElevatedButton(
                         onPressed: (){},
-                        child: Text('Register'),
+                        child: const Text('Register'),
                       ),
                       verticalSpaceMedium,
                     ],

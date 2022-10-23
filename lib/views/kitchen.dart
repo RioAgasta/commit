@@ -1,3 +1,4 @@
+import 'package:commit/constants/sharedPrefs.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/symmetricalSpace.dart';
@@ -13,15 +14,26 @@ class _KitchenState extends State<Kitchen> {
 
   int itemCount = 1;
 
+  void loadValues() async {
+    itemCount = (await SharedPrefs.getInt('intValue'))!;
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    loadValues();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Kitchen'),
+        title: const Text('Kitchen'),
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: Column(
             children: [
               Row(
@@ -31,34 +43,46 @@ class _KitchenState extends State<Kitchen> {
                     onPressed: (){
                       setState(() {
                         itemCount++;
+                        SharedPrefs.setInt('intValue', itemCount);
+                        loadValues();
                       });
                     },
-                    child: Text('Increase List'),
+                    child: const Text('Increase List'),
                   ),
                   ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.orange),
                     ),
-                    onPressed: (){},
-                    child: Text('Decrease List'),
+                    onPressed: (){
+                      if(itemCount > 0){
+                        itemCount--;
+                        SharedPrefs.setInt('intValue', itemCount);
+                        loadValues();
+                      }
+                    },
+                    child: const Text('Decrease List'),
                   ),
                   ElevatedButton(
                     style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(Colors.red),
                     ),
-                    onPressed: (){},
-                    child: Text('Reset List'),
+                    onPressed: (){
+                      itemCount = 1;
+                      SharedPrefs.setInt('intValue', itemCount);
+                      loadValues();
+                    },
+                    child: const Text('Reset List'),
                   ),
                 ],
               ),
               verticalSpaceMedium,
               GridView.builder(
-                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 100,
                   mainAxisSpacing: 10,
                   crossAxisSpacing: 10,
                 ),
-                physics: ScrollPhysics(parent: null),
+                physics: const ScrollPhysics(parent: null),
                 shrinkWrap: true,
                 itemCount: itemCount,
                 itemBuilder: (BuildContext context, int index){
