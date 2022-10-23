@@ -1,3 +1,4 @@
+import 'package:commit/widgets/sidebar.dart';
 import 'package:flutter/material.dart';
 import '../widgets/symmetricalSpace.dart';
 
@@ -17,7 +18,11 @@ class _YardState extends State<Yard> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Yard'),
+        actions: const [
+          BackButton(),
+        ],
       ),
+      drawer: const Sidebar(),
       body: SingleChildScrollView(
         child: Center(
           child: Column(

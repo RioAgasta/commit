@@ -1,8 +1,8 @@
+import 'package:commit/widgets/inputField.dart';
 import 'package:commit/widgets/symmetricalSpace.dart';
 import 'package:flutter/material.dart';
 import 'package:commit/views/home.dart';
 import 'package:commit/views/register.dart';
-import 'basement.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -19,10 +19,6 @@ class _LoginState extends State<Login> {
 
   void _navigateToRegister(BuildContext context){
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Register()));
-  }
-
-  void _navigateToBasement(BuildContext context){
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Basement()));
   }
 
   @override
@@ -47,30 +43,20 @@ class _LoginState extends State<Login> {
                 verticalSpaceMedium,
                 Image.asset('assets/images/smk2.png', width: 175, height: 175,),
                 verticalSpaceMedium,
-                TextField(
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    labelText: 'E-Mail Address',
-                    icon: const Icon(Icons.email),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
+                const InputField(
+                  labelText: 'E-Mail Address',
+                  icon: Icon(Icons.email),
+                  obscureText: false,
                 ),
                 verticalSpaceMedium,
-                TextField(
+                const InputField(
+                  labelText: 'Password',
+                  icon: Icon(Icons.lock),
                   keyboardType: TextInputType.text,
                   obscureText: true,
-                  decoration: InputDecoration(
-                    labelText: 'Password',
-                    icon: const Icon(Icons.lock),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
                 ),
                 verticalSpaceMedium,
-                Container(
+                SizedBox(
                   width: screenWidth,
                   height: 50,
                   child: ElevatedButton(
@@ -79,7 +65,7 @@ class _LoginState extends State<Login> {
                     },
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.circular(20),
                       ),
                     ),
                     child: const Text(

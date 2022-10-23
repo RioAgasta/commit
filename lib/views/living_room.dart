@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:commit/widgets/sidebar.dart';
 
 class LivingRoom extends StatefulWidget {
   const LivingRoom({Key? key}) : super(key: key);
@@ -22,7 +23,11 @@ class _LivingRoomState extends State<LivingRoom> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Living Room'),
+        actions: const [
+          BackButton(),
+        ],
       ),
+      drawer: const Sidebar(),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(10.0),

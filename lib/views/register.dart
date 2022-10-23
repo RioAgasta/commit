@@ -1,3 +1,4 @@
+import 'package:commit/widgets/inputField.dart';
 import 'package:commit/widgets/symmetricalSpace.dart';
 import 'package:flutter/material.dart';
 
@@ -9,10 +10,8 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         appBar: AppBar(
           title: const Text('Register'),
@@ -32,58 +31,44 @@ class _RegisterState extends State<Register> {
                       verticalSpaceMedium,
                       const Text('Register'),
                       verticalSpaceSmall,
-                      TextFormField(
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          label: Text('Username'),
-                        ),
-                        keyboardType: TextInputType.text,
+                      const InputField(
+                        labelText: 'Username',
+                        icon: Icon(Icons.person),
+                        obscureText: false,
                       ),
                       verticalSpaceMedium,
-                      TextFormField(
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          label: Text('Birthdate'),
-                        ),
+                      const InputField(
+                        labelText: 'Birthdate',
+                        icon: Icon(Icons.cake),
+                        obscureText: false,
                         keyboardType: TextInputType.datetime,
                       ),
                       verticalSpaceMedium,
-                      TextFormField(
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          label: Text('E-Mail Address'),
-                        ),
-                        keyboardType: TextInputType.emailAddress,
+                      const InputField(
+                        labelText: 'E-Mail Address',
+                        icon: Icon(Icons.email),
+                        obscureText: false,
                       ),
                       verticalSpaceMedium,
-                      TextFormField(
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          label: Text('Phone Number'),
-                        ),
+                      const InputField(
+                        labelText: 'Phone Number',
+                        icon: Icon(Icons.phone),
+                        obscureText: false,
                         keyboardType: TextInputType.number,
                       ),
                       verticalSpaceMedium,
-                      TextFormField(
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          label: Text('Password'),
-                        ),
-                        keyboardType: TextInputType.text,
-                        obscureText: true,
-                      ),
+                      const InputField(
+                          labelText: 'Password',
+                          icon: Icon(Icons.lock),
+                          obscureText: true),
                       verticalSpaceMedium,
-                      TextFormField(
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          label: Text('Confirm Password'),
-                        ),
-                        keyboardType: TextInputType.text,
-                        obscureText: true,
-                      ),
+                      const InputField(
+                          labelText: 'Confirm Password',
+                          icon: Icon(Icons.lock),
+                          obscureText: true),
                       verticalSpaceMedium,
                       ElevatedButton(
-                        onPressed: (){},
+                        onPressed: () {},
                         child: const Text('Register'),
                       ),
                       verticalSpaceMedium,
@@ -93,7 +78,6 @@ class _RegisterState extends State<Register> {
               ),
             ),
           ),
-        )
-    );
+        ));
   }
 }

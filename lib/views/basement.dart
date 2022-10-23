@@ -1,4 +1,5 @@
 import 'package:commit/constants/sharedPrefs.dart';
+import 'package:commit/widgets/sidebar.dart';
 import 'package:commit/widgets/symmetricalSpace.dart';
 import 'package:flutter/material.dart';
 
@@ -30,7 +31,11 @@ class _BasementState extends State<Basement> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Shared Preferences'),
+        actions: const [
+          BackButton(),
+        ],
       ),
+      drawer: const Sidebar(),
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(20),

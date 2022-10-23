@@ -1,6 +1,7 @@
 import 'package:commit/constants/sharedPrefs.dart';
 import 'package:flutter/material.dart';
 
+import '../widgets/sidebar.dart';
 import '../widgets/symmetricalSpace.dart';
 
 class Kitchen extends StatefulWidget {
@@ -30,7 +31,11 @@ class _KitchenState extends State<Kitchen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Kitchen'),
+        actions: const [
+          BackButton(),
+        ],
       ),
+      drawer: const Sidebar(),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(10),
