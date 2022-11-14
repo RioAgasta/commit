@@ -1,3 +1,5 @@
+import 'package:commit/widgets/sidebar.dart';
+import 'package:commit/widgets/symmetricalSpace.dart';
 import 'package:flutter/material.dart';
 
 class LivingRoom extends StatefulWidget {
@@ -8,13 +10,18 @@ class LivingRoom extends StatefulWidget {
 }
 
 class _LivingRoomState extends State<LivingRoom> {
-
   bool isSelected = false;
 
-  void _onTap(){
-   setState(() {
-     isSelected =! isSelected;
-   });
+  void _onTap() {
+    setState(() {
+      isSelected = !isSelected;
+    });
+  }
+
+  Future<String?> getData() async {
+    await Future.delayed(Duration(seconds: 3));
+
+    return 'Get Data Done';
   }
 
   @override
@@ -23,20 +30,33 @@ class _LivingRoomState extends State<LivingRoom> {
       appBar: AppBar(
         title: const Text('Living Room'),
       ),
+      drawer: Sidebar(),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
-          child: ListView(
-            shrinkWrap: true,
-            children: [
-              ListTile(
-                leading: const Icon(Icons.person),
-                title: const Text('List'),
-                trailing: const Icon(Icons.add),
-                selected: isSelected,
-                onTap: _onTap,
-              ),
-            ],
+          child: Center(
+            child: Column(
+              children: [
+                FutureBuilder(
+                  future: getData(),
+                  builder: (context, snapshot) {
+                    print(snapshot);
+                    final data = snapshot.data;
+                    if (snapshot.connectionState == ConnectionState.done) {
+                      return Text('$data');
+                    }
+                    return CircularProgressIndicator();
+                  },
+                ),
+                verticalSpaceMedium,
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {});
+                  },
+                  child: Text('Reload'),
+                )
+              ],
+            ),
           ),
         ),
       ),

@@ -21,10 +21,6 @@ class _LoginState extends State<Login> {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Register()));
   }
 
-  void _navigateToBasement(BuildContext context){
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Basement()));
-  }
-
   @override
   Widget build(BuildContext context) {
 
