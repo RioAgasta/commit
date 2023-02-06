@@ -1,11 +1,11 @@
-import 'package:commit/login.dart';
-import 'package:commit/register.dart';
 import 'package:flutter/material.dart';
-import 'home.dart';
+import 'package:commit/views/login.dart';
 
 void main() {
   runApp(const MyApp());
 }
+
+// Navigator : Navigator.of(context).push(MaterialPageRoute(builder: (context) => ClassName()));
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter App',
+      title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
