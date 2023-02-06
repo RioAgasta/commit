@@ -1,8 +1,8 @@
+import 'package:commit/yard.dart';
 import 'package:flutter/material.dart';
-import 'basement.dart';
-import 'yard.dart';
-import 'living_room.dart';
+
 import 'kitchen.dart';
+import 'livingRoom.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -13,47 +13,44 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  static const List<Widget> pageList = [
-    LivingRoom(),
-    Yard(),
-    Kitchen(),
-    Basement(),
-  ];
-
-  int selectedIndex = 0;
+  int _currentIndex = 1;
 
   void _onTap(int index){
     setState(() {
-      selectedIndex = index;
+      _currentIndex = index;
     });
   }
+
+  List<Widget> pageList = [
+    LivingRoom(),
+    Yard(),
+    Kitchen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: pageList.elementAt(selectedIndex),
+      appBar: AppBar(
+        title: Text('Home'),
+      ),
+      body: pageList.elementAt(_currentIndex),
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        items: const <BottomNavigationBarItem>[
+        currentIndex: _currentIndex,
+        onTap: _onTap,
+        items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.living),
             label: 'Living Room',
+            icon: Icon(Icons.living),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.park),
             label: 'Yard',
+            icon: Icon(Icons.park),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.kitchen),
             label: 'Kitchen',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.door_back_door),
-            label: 'Basement',
+            icon: Icon(Icons.kitchen),
           ),
         ],
-        currentIndex: selectedIndex,
-        onTap: _onTap,
       ),
     );
   }

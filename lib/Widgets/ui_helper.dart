@@ -11,3 +11,6 @@ const horizontalSpaceSmall = SizedBox(width: 15,);
 const horizontalSpaceMedium = SizedBox(width: 25,);
 const horizontalSpaceLarge = SizedBox(width: 50,);
 const horizontalSpaceMassive = SizedBox(width: 125,);
+
+double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
+double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
