@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:commit/widgets/sidebar.dart';
+
+import '../constants/ui_helper.dart';
 
 class LivingRoom extends StatefulWidget {
   const LivingRoom({Key? key}) : super(key: key);
@@ -10,39 +11,49 @@ class LivingRoom extends StatefulWidget {
 
 class _LivingRoomState extends State<LivingRoom> {
 
-  bool isSelected = false;
+  int jumlah = 1;
 
-  void _onTap(){
-   setState(() {
-     isSelected =! isSelected;
-   });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Living Room'),
-        actions: const [
-          BackButton(),
-        ],
-      ),
-      drawer: const Sidebar(),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: ListView(
-            shrinkWrap: true,
-            children: [
-              ListTile(
-                leading: const Icon(Icons.person),
-                title: const Text('List'),
-                trailing: const Icon(Icons.add),
-                selected: isSelected,
-                onTap: _onTap,
-              ),
-            ],
-          ),
+        child: Column(
+          children: [
+            verticalSpaceMedium,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    jumlah++;
+                    setState(() {});
+                  },
+                  child: Icon(Icons.plus_one),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    if(jumlah >= 1){
+                      jumlah--;
+                      setState(() {});
+                    }
+                  },
+                  child: Icon(Icons.exposure_minus_1),
+                ),
+              ],
+            ),
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: jumlah,
+              itemBuilder: (context, index) {
+                index += 1;
+                return ListTile(
+                  leading: Icon(Icons.person),
+                  title: Text('ListView $index'),
+                );
+              },
+            ),
+          ],
         ),
       ),
     );

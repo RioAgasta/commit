@@ -1,6 +1,4 @@
-import 'package:commit/constants/sharedPrefs.dart';
-import 'package:commit/widgets/sidebar.dart';
-import 'package:commit/widgets/symmetricalSpace.dart';
+import 'package:commit/constants/ui_helper.dart';
 import 'package:flutter/material.dart';
 
 class Basement extends StatefulWidget {
@@ -12,87 +10,157 @@ class Basement extends StatefulWidget {
 
 class _BasementState extends State<Basement> {
 
-  TextEditingController strController = TextEditingController();
-  String? strValue;
-
-  void loadValues() async {
-    strValue = await SharedPrefs.getString('strValue') ?? "No Value";
-    setState(() {});
-  }
-
-  @override
-  void initState() {
-    loadValues();
-    super.initState();
-  }
-
+  String gambar1 = "assets/puan.jpg";
+  String gambar2 = "assets/gambarlain.jpg";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Shared Preferences'),
-        actions: const [
-          BackButton(),
-        ],
-      ),
-      drawer: const Sidebar(),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(20),
-          margin: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            boxShadow: const [
-              BoxShadow(
-                blurRadius: 4,
-              ),
-            ],
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
-          ),
+      body: Container(
+        width: screenWidth(context),
+        height: screenHeight(context),
+        decoration: BoxDecoration(
+          color: Colors.blue,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('String Value: $strValue'),
+              Container(
+                padding: EdgeInsets.all(25),
+                width: screenWidth(context),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      'Power',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
+                    ),
+                    verticalSpaceSmall,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Voltage'),
+                        Text(
+                          'V',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Current'),
+                        Text(
+                          'A',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Power'),
+                        Text(
+                          'W',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Energy'),
+                        Text(
+                          'kWh',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Frequency'),
+                        Text(
+                          'Hz',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
               verticalSpaceSmall,
               Row(
                 children: [
                   Expanded(
-                    child: TextField(
-                      controller: strController,
-                      decoration: const InputDecoration(
-                        labelText: 'Enter Value',
-                        border: OutlineInputBorder(),
+                    child: Container(
+                      padding: EdgeInsets.all(25),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Column(
+                        children: [
+                          Text('Saklar'),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Switch(value: false, onChanged: (index) {}),
+                              Icon(Icons.lightbulb),
+                            ],
+                          )
+                        ],
                       ),
                     ),
                   ),
                   horizontalSpaceSmall,
-                  ElevatedButton(
-                    onPressed: (){
-                      strValue = strController.text;
-                      SharedPrefs.setString('strValue', strValue!);
-                      loadValues();
-                    },
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.blue),
+                  Expanded(
+                    child: Container(
+                      padding: EdgeInsets.all(25),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Column(
+                        children: [
+                          Text('Steker'),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Switch(value: false, onChanged: (index) {}),
+                              Icon(Icons.bolt),
+                            ],
+                          )
+                        ],
+                      ),
                     ),
-                    child: const Text('Save'),
-                  ),
-                  horizontalSpaceSmall,
-                  ElevatedButton(
-                    onPressed: (){
-                      SharedPrefs.remove('strValue');
-                      loadValues();
-                    },
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.red),
-                    ),
-                    child: const Text('Delete'),
                   ),
                 ],
+              ),
+              verticalSpaceSmall,
+              Container(
+                width: screenWidth(context),
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.white),
+
+                  ),
+                  child: Text('RESET', style: TextStyle(color: Colors.red),),
+                ),
               ),
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.white,
+        onPressed: () {},
+        child: Icon(Icons.add, color: Colors.black,),
       ),
     );
   }

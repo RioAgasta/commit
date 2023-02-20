@@ -1,11 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:commit/views/login.dart';
+import 'package:flutter/material.dart';
+import 'package:commit/views/home.dart';
 
 void main() {
   runApp(const MyApp());
 }
-
-// Navigator : Navigator.of(context).push(MaterialPageRoute(builder: (context) => ClassName()));
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

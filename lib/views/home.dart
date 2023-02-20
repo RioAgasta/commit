@@ -1,8 +1,10 @@
+import 'package:commit/constants/ui_helper.dart';
+import 'package:commit/views/yard.dart';
 import 'package:flutter/material.dart';
+
 import 'basement.dart';
-import 'yard.dart';
-import 'living_room.dart';
 import 'kitchen.dart';
+import 'living_room.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -12,48 +14,48 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
-  static const List<Widget> pageList = [
-    LivingRoom(),
-    Yard(),
-    Kitchen(),
-    Basement(),
-  ];
-
-  int selectedIndex = 0;
-
-  void _onTap(int index){
+  int currentIndex = 1;
+  List<Widget> pageList = [LivingRoom(), Yard(), Kitchen(), Basement()];
+  void onTap(index){
     setState(() {
-      selectedIndex = index;
+      currentIndex = index;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: pageList.elementAt(selectedIndex),
+      appBar: AppBar(
+        title: Text('Commit Project'),
+        centerTitle: true,
+        actions: [
+          Icon(Icons.qr_code),
+          horizontalSpaceMedium,
+        ],
+      ),
+      body: pageList.elementAt(currentIndex),
       bottomNavigationBar: BottomNavigationBar(
+        onTap: onTap,
         type: BottomNavigationBarType.fixed,
-        items: const <BottomNavigationBarItem>[
+        currentIndex: currentIndex,
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.living),
             label: 'Living Room',
+            icon: Icon(Icons.living),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.park),
             label: 'Yard',
+            icon: Icon(Icons.park),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.kitchen),
             label: 'Kitchen',
+            icon: Icon(Icons.kitchen),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.door_back_door),
             label: 'Basement',
+            icon: Icon(Icons.door_back_door),
           ),
         ],
-        currentIndex: selectedIndex,
-        onTap: _onTap,
       ),
     );
   }
