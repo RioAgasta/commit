@@ -1,5 +1,6 @@
 import 'package:commit/constants/ui_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:commit/constants/sharedPrefs.dart';
 
 class Basement extends StatefulWidget {
   const Basement({Key? key}) : super(key: key);
@@ -10,8 +11,22 @@ class Basement extends StatefulWidget {
 
 class _BasementState extends State<Basement> {
 
-  String gambar1 = "assets/puan.jpg";
-  String gambar2 = "assets/gambarlain.jpg";
+  bool saklar = false;
+  bool steker = false;
+
+  loadValues() async {
+    saklar = (await sharedPrefs.getBool('saklar'))!;
+    steker = (await sharedPrefs.getBool('steker'))!;
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loadValues();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,7 +124,11 @@ class _BasementState extends State<Basement> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Switch(value: false, onChanged: (index) {}),
+                              Switch(value: saklar, onChanged: (index) {
+                                saklar = index;
+                                sharedPrefs.setBool('saklar', saklar);
+                                loadValues();
+                              }),
                               Icon(Icons.lightbulb),
                             ],
                           )
@@ -131,7 +150,11 @@ class _BasementState extends State<Basement> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Switch(value: false, onChanged: (index) {}),
+                              Switch(value: steker, onChanged: (index) {
+                                steker = index;
+                                sharedPrefs.setBool('steker', steker);
+                                loadValues();
+                              }),
                               Icon(Icons.bolt),
                             ],
                           )
@@ -145,10 +168,13 @@ class _BasementState extends State<Basement> {
               Container(
                 width: screenWidth(context),
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    sharedPrefs.setBool('saklar', false);
+                    sharedPrefs.setBool('steker', false);
+                    loadValues();
+                  },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.white),
-
                   ),
                   child: Text('RESET', style: TextStyle(color: Colors.red),),
                 ),

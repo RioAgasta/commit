@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:commit/constants/sharedPrefs.dart';
 import '../constants/ui_helper.dart';
 
 class LivingRoom extends StatefulWidget {
@@ -13,6 +13,16 @@ class _LivingRoomState extends State<LivingRoom> {
 
   int jumlah = 1;
 
+  loadValues() async {
+    jumlah = (await sharedPrefs.getInt('jumlah'))!;
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadValues();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +37,8 @@ class _LivingRoomState extends State<LivingRoom> {
                 ElevatedButton(
                   onPressed: () {
                     jumlah++;
-                    setState(() {});
+                    sharedPrefs.setInt('jumlah', jumlah);
+                    loadValues();
                   },
                   child: Icon(Icons.plus_one),
                 ),
@@ -35,7 +46,8 @@ class _LivingRoomState extends State<LivingRoom> {
                   onPressed: () {
                     if(jumlah >= 1){
                       jumlah--;
-                      setState(() {});
+                      sharedPrefs.setInt('jumlah', jumlah);
+                      loadValues();
                     }
                   },
                   child: Icon(Icons.exposure_minus_1),
